@@ -11,11 +11,11 @@ export const Dropzone = () => {
   });
 
   return (
-    <div className="h-64 w-64 rounded-xl border-2 border-gray-300 border-dashed p-2 ">
+    <div className="h-64 w-64 rounded-md border-2 border-gray-300 border-dashed p-2 ">
       <div {...getRootProps()}>
         <input {...getInputProps()} />
         <div className="text-center">
-          This dropzone takes jpg, jpeg, png, webp, and gif files.
+          Come on man, it's just images, drop them here!
         </div>
       </div>
     </div>
