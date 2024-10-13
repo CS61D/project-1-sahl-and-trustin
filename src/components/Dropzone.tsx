@@ -1,12 +1,22 @@
 import { ImageMimeTypes } from "@/lib/constants";
 import { useDropzone } from "react-dropzone";
+import { useTaskList } from "../providers/TaskContext";
+import type { Task } from "../types/task";
 
 export const Dropzone = () => {
+  const { addTask } = useTaskList();
+
   const { getRootProps, getInputProps } = useDropzone({
     accept: ImageMimeTypes,
     onDrop: (files: File[]) => {
       console.log("Files dropped:", files);
       // TODO: Do something with the dropped files
+      for (const f of files) {
+        addTask({
+          fileObject: f,
+          cliOptions: [],
+        });
+      }
     },
   });
 
