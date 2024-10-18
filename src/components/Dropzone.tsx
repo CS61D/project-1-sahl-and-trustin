@@ -1,10 +1,11 @@
 import { ImageMimeTypes } from "@/lib/constants";
 import { useDropzone } from "react-dropzone";
 import { useTaskList } from "../providers/TaskContext";
-import type { Task } from "../types/task";
+import  { Task } from "../types/task";
+import FileList from "./FileList";
 
 export const Dropzone = () => {
-  const { addTask } = useTaskList();
+  const { addTask, taskList } = useTaskList();
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: ImageMimeTypes,
@@ -21,6 +22,7 @@ export const Dropzone = () => {
   });
 
   return (
+  <div>
   <div className="h-64 w-96 rounded-lg border-2 border-gray-300 border-dashed p-2 flex items-center justify-center">
       <div {...getRootProps()}>
         <input {...getInputProps()} />
@@ -34,5 +36,7 @@ export const Dropzone = () => {
         </div>
       </div>
     </div>
+    <FileList files={taskList}/>
+    </div>  
   );
 };
