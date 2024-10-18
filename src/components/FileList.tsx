@@ -1,5 +1,6 @@
 import React from 'react';
 import { Task } from '../types/task';
+import FileBox from '../components/FileBox';
 
 interface FileListProps {
     files: Task[];
@@ -10,10 +11,11 @@ const FileList: React.FC<FileListProps> = ({ files }) => {
         <div>
             {files.length > 0 ? (
                 <ul>
-                    {files.map((task, index) => (
-                        <li key = {index}>
-                            {task.fileObject.name}
-                        </li>
+                    {files.map((file, index) => (
+                        <FileBox 
+                            key = {index}
+                            file = {file}
+                        />
                     ))}
                 </ul>
             ) : (
