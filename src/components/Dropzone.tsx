@@ -21,11 +21,16 @@ export const Dropzone = () => {
   });
 
   return (
-    <div className="h-64 w-64 rounded-lg border-2 border-gray-300 border-dashed p-2 ">
+  <div className="h-64 w-96 rounded-lg border-2 border-gray-300 border-dashed p-2 flex items-center justify-center">
       <div {...getRootProps()}>
         <input {...getInputProps()} />
         <div className="text-center">
-          This is your unstyled dropzone. Drop files here!
+          <p className="text-lg font-semibold text-gray-700">
+            Drag & drop an image here, or click to select files
+          </p>
+          <p className="text-sm text-gray-500">
+            Supported input formats: png, jpeg, bmp, ico, tiff, gif
+          </p>
         </div>
       </div>
     </div>
