@@ -12,13 +12,15 @@ export const Dropzone = () => {
     accept: ImageMimeTypes,
     onDrop: (files: File[]) => {
       console.log("Files dropped:", files);
-      // TODO: Do something with the dropped files
-      for (const f of files) {
-        addTask({
-          fileObject: f,
-          cliOptions: [],
-        });
-      }
+
+      // Add all files from the drop to the task list
+      const newTasks = files.map((file) => ({
+        fileObject: file,
+        cliOptions: [], // Add any other properties here
+      }));
+
+      // Update the taskList by appending new tasks
+      setTaskList((prevList) => [...prevList, ...newTasks]);
     },
   });
 
