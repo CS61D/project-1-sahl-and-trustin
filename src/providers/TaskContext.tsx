@@ -4,6 +4,7 @@ import { useState, createContext, useContext, useEffect } from "react";
 type TaskListContext = {
   taskList: Task[];
   addTask: (task: Task) => void;
+  setTaskList: React.Dispatch<React.SetStateAction<Task[]>>;
 };
 const TaskContext = createContext<TaskListContext | undefined>(undefined);
 
@@ -15,11 +16,7 @@ export const useTaskList = (): TaskListContext => {
   return context;
 };
 
-export const TaskListProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+export const TaskListProvider = ({ children }: { children: React.ReactNode }) => {
   const [taskList, setTaskList] = useState<Task[]>([]);
 
   const addTask = (task: Task) => {
@@ -27,7 +24,7 @@ export const TaskListProvider = ({
   };
 
   return (
-    <TaskContext.Provider value={{ taskList, addTask }}>
+    <TaskContext.Provider value={{ taskList, addTask, setTaskList }}>
       {children}
     </TaskContext.Provider>
   );

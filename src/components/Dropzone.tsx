@@ -4,8 +4,9 @@ import { useTaskList } from "../providers/TaskContext";
 import  { Task } from "../types/task";
 import FileList from "./FileList";
 
+
 export const Dropzone = () => {
-  const { addTask, taskList } = useTaskList();
+  const { addTask, taskList, setTaskList } = useTaskList();
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: ImageMimeTypes,
@@ -21,22 +22,26 @@ export const Dropzone = () => {
     },
   });
 
+  const removeFile = (fileToRemove: Task) => {
+    setTaskList((prevList) => prevList.filter(task => task.fileObject !== fileToRemove.fileObject));
+  };
+
   return (
-  <div>
-  <div className="h-64 w-96 rounded-lg border-2 border-gray-300 border-dashed p-2 flex items-center justify-center">
-      <div {...getRootProps()}>
-        <input {...getInputProps()} />
-        <div className="text-center">
-          <p className="text-lg font-semibold text-gray-700">
-            Drag & drop an image here, or click to select files
-          </p>
-          <p className="text-sm text-gray-500">
-            Supported input formats: png, jpeg, bmp, ico, tiff, gif
-          </p>
+    <div>
+      <div className="h-64 w-96 rounded-lg border-2 border-gray-300 border-dashed p-2 flex items-center justify-center">
+        <div {...getRootProps()}>
+          <input {...getInputProps()} />
+          <div className="text-center">
+            <p className="text-lg font-semibold text-gray-700">
+              Drag & drop an image here, or click to select files
+            </p>
+            <p className="text-sm text-gray-500">
+              Supported input formats: png, jpeg, bmp, ico, tiff, gif
+            </p>
+          </div>
         </div>
       </div>
+      <FileList files={taskList} removeFile={removeFile} />
     </div>
-    <FileList files={taskList}/>
-    </div>  
   );
 };

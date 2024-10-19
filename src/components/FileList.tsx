@@ -4,9 +4,10 @@ import FileBox from '../components/FileBox';
 
 interface FileListProps {
     files: Task[];
+    removeFile: (file: Task) => void;
 }
 
-const FileList: React.FC<FileListProps> = ({ files }) => {
+const FileList: React.FC<FileListProps> = ({ files, removeFile }) => {
     return (
         <div>
             {files.length > 0 ? (
@@ -15,6 +16,7 @@ const FileList: React.FC<FileListProps> = ({ files }) => {
                         <FileBox 
                             key = {index}
                             file = {file}
+                            onRemove = {removeFile}
                         />
                     ))}
                 </ul>
