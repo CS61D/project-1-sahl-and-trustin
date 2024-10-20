@@ -1,9 +1,7 @@
 import { ImageMimeTypes } from "@/lib/constants";
 import { useDropzone } from "react-dropzone";
 import { useTaskList } from "../providers/TaskContext";
-import  { Task } from "../types/task";
-import FileList from "./FileList";
-
+import { createTask } from "../types/task";
 
 export const Dropzone = () => {
   const { addTask, taskList, setTaskList } = useTaskList();
@@ -14,19 +12,13 @@ export const Dropzone = () => {
       console.log("Files dropped:", files);
 
       // Add all files from the drop to the task list
-      const newTasks = files.map((file) => ({
-        fileObject: file,
-        cliOptions: [], // Add any other properties here
-      }));
+      const newTasks = files.map((file) => createTask(file));
+      console.log("ok");
 
       // Update the taskList by appending new tasks
       setTaskList((prevList) => [...prevList, ...newTasks]);
     },
   });
-
-  const removeFile = (fileToRemove: Task) => {
-    setTaskList((prevList) => prevList.filter(task => task.fileObject !== fileToRemove.fileObject));
-  };
 
   return (
     <div>
@@ -43,7 +35,6 @@ export const Dropzone = () => {
           </div>
         </div>
       </div>
-      <FileList files={taskList} removeFile={removeFile} />
     </div>
   );
 };
