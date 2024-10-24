@@ -15,6 +15,7 @@ export const Dropzone = () => {
       const newTasks = files.map((file) => createTask(file));
       console.log("ok");
 
+      //* Remember to use the custom state updater functions you write! addTask is feeling left out :(
       // Update the taskList by appending new tasks
       setTaskList((prevList) => [...prevList, ...newTasks]);
     },
