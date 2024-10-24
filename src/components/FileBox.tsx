@@ -16,6 +16,7 @@ const FileBox = ({
   handleDownload,
   onRemove,
 }: FileBoxProps) => {
+  //* This works, but you could have saved yourself some effort by using formatFileSize in utils.ts
   const getFileSize = (size: number) => {
     return (size / 1024).toFixed(2);
   };
@@ -114,6 +115,7 @@ const FileBox = ({
         </select>
       </div>
 
+      {/* //* It probably would have been a bit clearer if you had moved the conditional rendering logic into the renderFileSize() function itself, rather than having it inline */}
       {outputSizeKB ? renderFileSize() : ""}
 
       <div>

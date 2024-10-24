@@ -1,10 +1,12 @@
 import { splitExtension } from "../lib/utils";
 
+//* It's convention to always have types be capitalized, so it would be Options
 export type options = {
   basename: string;
   format: string;
 };
 
+//* It's convention to always have types be capitalized, so it would be DownloadInfo
 type downloadInfo = {
   url: string;
   filesize: number;
